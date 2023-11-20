@@ -41,6 +41,11 @@ jobs:
       #  id: packedJsStatus
       #  run: echo ::set-output name=changes::$(git status ${{ env.DIST_FOLDER }} --porcelain)
 
+      - name: Check packed JS changes
+       id: packedJsStatus
+       run: |
+          git diff --quiet dist || echo "changes=true" >> $GITHUB_OUTPUT
+
       - name: Commit packed JS
         id: commitPackedJs
         # if: steps.packedJsStatus.outputs.changes
@@ -48,7 +53,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add ${{ env.DIST_FOLDER }}/**
-          git commit -m "Pack with dependencies to ${{ env.DIST_FOLDER }}" --quiet
+          git commit -m "Pack with dependencies to ${{ env.DIST_FOLDER }}"s
 
       - name: Push packed JS
         if: steps.commitPackedJs.outcome == 'success'
