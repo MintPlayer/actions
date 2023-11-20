@@ -4,13 +4,13 @@ This repository contains several GitHub Actions to help organize git repositorie
 ## delay
 ### Usage
 
-    - uses: MintPlayer/actions/delay@main
+    - uses: MintPlayer/github-actions/delay@main
       with:
         milliseconds: '1000'
 
 ## cherry-pick-action
 ### Usage
 
-    - uses: MintPlayer/actions/cherry-pick@main
+    - uses: MintPlayer/github-actions/cherry-pick@main
       with:
         milliseconds: '1000'
