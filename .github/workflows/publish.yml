@@ -6,7 +6,7 @@ on:
 jobs:
   build:
     env:
-      PACKED_JS_PATH: 'dist/cherry-pick/index.js'
+      DIST_FOLDER: 'dist'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -14,29 +14,36 @@ jobs:
     steps:
       - name: Checkout files
         uses: actions/checkout@v4
+
       - name: Setup Node ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Extract branch name
         id: extractBranch
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+
       - name: Install dependencies  
         run: npm install
+
       - name: Build
         run: npm run build
+
       - name: Check packed JS changes
         id: packedJsStatus
-        run: echo ::set-output name=changes::$(git status ${{ env.PACKED_JS_PATH }} --porcelain)
+        run: echo ::set-output name=changes::$(git status ${{ env.DIST_FOLDER }} --porcelain)
+
       - name: Commit packed JS
         id: commitPackedJs
         if: steps.packedJsStatus.outputs.changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add ${{ env.PACKED_JS_PATH }}
-          git commit -m "Pack with dependencies to ${{ env.PACKED_JS_PATH }}"
+          git add ${{ env.DIST_FOLDER }}/**
+          git commit -m "Pack with dependencies to ${{ env.DIST_FOLDER }}"
+
       - name: Push packed JS  
         if: steps.commitPackedJs.outcome == 'success'  
         uses: ad-m/github-push-action@master  
@@ -45,3 +52,11 @@ jobs:
           tags: true  
           force: true  
           branch: ${{ steps.extractBranch.outputs.branch }}
+        
+      - name: Update Major Tag
+        run: |
+          MAJOR_VERSION=$(git describe --tags | grep -o "v[0-9]*")
+          git config --global user.email 'action@github.com'
+          git config --global user.name 'GitHub Action'
+          git tag -afm "Updated tag $MAJOR_VERSION to $(git describe --tags)" $MAJOR_VERSION
+          git push --tags --force
