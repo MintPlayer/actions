@@ -61,7 +61,7 @@ function run(ms) {
         yield new Promise((resolve) => {
             setTimeout(() => resolve(true), ms);
         });
-        console.log(`Done OK`);
+        console.log(`Done OKK`);
     });
 }
 exports.run = run;
