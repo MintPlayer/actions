@@ -44,7 +44,7 @@ jobs:
       - name: Check packed JS changes
         id: packedJsStatus
         run: |
-          git diff --quiet dist || echo "changes=true" >> $GITHUB_OUTPUT
+          git diff dist || echo "changes=true" >> $GITHUB_OUTPUT
 
       - name: Commit packed JS
         id: commitPackedJs
