@@ -57,9 +57,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.run = void 0;
 function run(ms) {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log(`Waiting for ${ms} ms`);
         yield new Promise((resolve) => {
             setTimeout(() => resolve(true), ms);
         });
+        console.log(`Done OK`);
     });
 }
 exports.run = run;
