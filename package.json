@@ -5,7 +5,7 @@
   "description": "More generic GitHub Action to cherry-pick merged commits into release branches",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MintPlayer/actions",
+    "url": "https://github.com/MintPlayer/github-actions",
     "directory": ""
   },
   "bugs": {
