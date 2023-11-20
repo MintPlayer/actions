@@ -5,5 +5,5 @@ export async function run(ms: number) {
         setTimeout(() => resolve(true), ms);
     });
 
-    console.log(`Done`);
+    console.log(`Done OK`);
 }

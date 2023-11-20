@@ -4,6 +4,6 @@ export async function run(ms: number) {
     await new Promise((resolve) => {
         setTimeout(() => resolve(true), ms);
     });
-    
-    console.log(`Done`);
+
+    console.log(`Done OK`);
 }
