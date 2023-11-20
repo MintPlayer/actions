@@ -1,0 +1,1 @@
+- https://cardinalby.github.io/blog/post/github-actions/js-action-packing-and-releasing/

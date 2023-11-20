@@ -1,0 +1,44 @@
+{
+  "name": "@mintplayer/actions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "More generic GitHub Action to cherry-pick merged commits into release branches",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MintPlayer/actions",
+    "directory": ""
+  },
+  "bugs": {
+    "email": "info@mintplayer.com",
+    "url": "https://github.com/MintPlayer/actions/issues"
+  },
+  "scripts": {
+    "build": "tsc",
+    "pack:delay": "ncc build lib/delay -o dist/delay",
+    "pack:cherry-pick": "ncc build lib/cherry-pick -o dist/cherry-pick",
+    "all": "npm run build && npm run pack:delay && npm run pack:cherry-pick",
+    "test": "jest"
+  },
+  "keywords": [
+    "github",
+    "action",
+    "cherry-pick",
+    "release"
+  ],
+  "author": {
+    "name": "Pieterjan De Clippel",
+    "url": "https://github.com/MintPlayer",
+    "email": "info@mintplayer.com"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@actions/core": "^1.10.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.8",
+    "@vercel/ncc": "^0.38.1",
+    "github-action-ts-run-api": "^3.0.4",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.2.2"
+  }
+}

@@ -1,0 +1,15 @@
+name: Cherry-pick
+description: Cherry-pick a merge commit into release branches
+author: MintPlayer
+inputs:
+  milliseconds:
+    description: Number of milliseconds to wait
+    required: false
+    default: '1000'
+  # versions:
+  #   description: 'Names of release branches to cherry-pick the merge commit into'
+  #   required: false
+  #   default: ''
+runs:
+  using: node16
+  main: dist/cherry-pick/index.js
