@@ -35,7 +35,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build
+        run: npm run all
 
       #- name: Check packed JS changes
       #  id: packedJsStatus
