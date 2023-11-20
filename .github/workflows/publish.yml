@@ -11,11 +11,15 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
+
     steps:
       - name: Checkout files
         uses: actions/checkout@v4
         with:
           fetch-tags: true
+
+      - name: Fetch all tags
+        run: git fetch --prune --unshallow
 
       - name: Setup Node ${{ matrix.node-version }}
         uses: actions/setup-node@v4
