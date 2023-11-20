@@ -42,8 +42,8 @@ jobs:
       #  run: echo ::set-output name=changes::$(git status ${{ env.DIST_FOLDER }} --porcelain)
 
       - name: Check packed JS changes
-       id: packedJsStatus
-       run: |
+        id: packedJsStatus
+        run: |
           git diff --quiet dist || echo "changes=true" >> $GITHUB_OUTPUT
 
       - name: Commit packed JS
