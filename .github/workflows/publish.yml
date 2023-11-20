@@ -48,7 +48,7 @@ jobs:
 
       - name: Commit packed JS
         id: commitPackedJs
-        # if: steps.packedJsStatus.outputs.changes
+        if: steps.packedJsStatus.outputs.changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
