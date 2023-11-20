@@ -47,14 +47,15 @@ jobs:
       #     git diff dist || echo "changes=true" >> $GITHUB_OUTPUT
 
       - id: files
-        uses: jitterbit/get-changed-files@v1
+        uses: tj-actions/changed-files@v40
+        with:
+          dir_names: 'dist'
       
       - name: Commit packed JS
         id: commitPackedJs
         # if: steps.packedJsStatus.outputs.changes
-        if: steps.files.outputs.all != ''
+        if: steps.files.outputs.any_changed
         run: |
-          echo ${{ steps.files.outputs.all }}
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add ${{ env.DIST_FOLDER }}/**
