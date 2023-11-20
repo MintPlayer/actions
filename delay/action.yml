@@ -1,0 +1,15 @@
+name: Delay
+description: Milliseconds delay
+author: MintPlayer
+inputs:
+  milliseconds:
+    description: Number of milliseconds to wait
+    required: false
+    default: '1000'
+  # versions:
+  #   description: 'Names of release branches to cherry-pick the merge commit into'
+  #   required: false
+  #   default: ''
+runs:
+  using: node16
+  main: dist/delay/index.js
