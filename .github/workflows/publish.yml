@@ -41,14 +41,18 @@ jobs:
       #  id: packedJsStatus
       #  run: echo ::set-output name=changes::$(git status ${{ env.DIST_FOLDER }} --porcelain)
 
-      - name: Check packed JS changes
-        id: packedJsStatus
-        run: |
-          git diff dist || echo "changes=true" >> $GITHUB_OUTPUT
+      # - name: Check packed JS changes
+      #   id: packedJsStatus
+      #   run: |
+      #     git diff dist || echo "changes=true" >> $GITHUB_OUTPUT
 
+      - id: files
+        uses: jitterbit/get-changed-files@v1
+      
       - name: Commit packed JS
         id: commitPackedJs
-        if: steps.packedJsStatus.outputs.changes
+        # if: steps.packedJsStatus.outputs.changes
+        if: steps.files.outputs.all
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
