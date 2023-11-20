@@ -46,19 +46,26 @@ jobs:
       #   run: |
       #     git diff dist || echo "changes=true" >> $GITHUB_OUTPUT
 
-      - id: files
-        uses: tj-actions/changed-files@v40
-        with:
-          files: |
-            'dist/**'
+      # - id: files
+      #   uses: tj-actions/changed-files@v40
+      #   with:
+      #     files: |
+      #       'dist/**'
       
+      
+      - name: Check packed JS changes
+        id: packedJsStatus
+        run: |
+          echo "changed_files=$(git diff --name-only dist | xargs)" >> $GITHUB_OUTPUT
 
+      - name: Print
+        run: echo ${{ steps.packedJsStatus.outputs.changed_files }}
+      
       #git add ${{ env.DIST_FOLDER }}/**
-
       - name: Commit packed JS
         id: commitPackedJs
-        # if: steps.packedJsStatus.outputs.changes
-        if: steps.files.outputs.any_changed
+        if: steps.packedJsStatus.outputs.changed_files
+        #if: steps.files.outputs.any_changed
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
