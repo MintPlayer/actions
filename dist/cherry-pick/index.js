@@ -85,7 +85,7 @@ function run(ms) {
         yield new Promise((resolve) => {
             setTimeout(() => resolve(true), ms);
         });
-        yield exec.exec('git', ['config', '--local', 'user.email', '"action@github.com"'], {
+        yield exec.exec('git', ['config', '--global', 'user.email', '"action@github.com"'], {
             listeners: {
                 stdout: (data) => {
                     console.log(`git config ok: ${data}`);
@@ -95,7 +95,7 @@ function run(ms) {
                 }
             }
         });
-        yield exec.exec('git', ['config', '--local', 'user.name', '"GitHub Action"'], {
+        yield exec.exec('git', ['config', '--global', 'user.name', '"GitHub Action"'], {
             listeners: {
                 stdout: (data) => {
                     console.log(`git config ok: ${data}`);
