@@ -1,6 +1,6 @@
 {
   "name": "@mintplayer/actions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "More generic GitHub Action to cherry-pick merged commits into release branches",
   "repository": {
@@ -32,7 +32,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@actions/core": "^1.10.1"
+    "@actions/core": "^1.10.1",
+    "@actions/exec": "^1.1.1"
   },
   "devDependencies": {
     "@types/jest": "^29.5.8",
