@@ -30,7 +30,7 @@ export async function run(ms: number) {
     //     }
     // });
 
-    await exec.exec('git', ['branch'], {
+    await exec.exec('git', ['branch', '-a'], {
         listeners: {
             stdout: (data) => {
                 console.log(`Found branch: ${data}`);
