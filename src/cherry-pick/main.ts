@@ -9,7 +9,7 @@ export async function run(ms: number) {
         setTimeout(() => resolve(true), ms);
     });
 
-    await exec.exec('git', ['config', '--local', 'user.email', '"action@github.com"'], {
+    await exec.exec('git', ['config', '--global', 'user.email', '"action@github.com"'], {
         listeners: {
             stdout: (data) => {
                 console.log(`git config ok: ${data}`);
@@ -19,7 +19,7 @@ export async function run(ms: number) {
             }
         }
     });
-    await exec.exec('git', ['config', '--local', 'user.name', '"GitHub Action"'], {
+    await exec.exec('git', ['config', '--global', 'user.name', '"GitHub Action"'], {
         listeners: {
             stdout: (data) => {
                 console.log(`git config ok: ${data}`);
