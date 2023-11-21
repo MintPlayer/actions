@@ -85,7 +85,7 @@ function run(ms) {
         yield new Promise((resolve) => {
             setTimeout(() => resolve(true), ms);
         });
-        yield exec.exec('git', ['branch'], {
+        yield exec.exec('git', ['branch', '-a', '-r', '| grep -v "HEAD"'], {
             listeners: {
                 stdout: (data) => {
                     console.log(`Found branch: ${data}`);
