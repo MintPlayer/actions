@@ -9,6 +9,27 @@ export async function run(ms: number) {
         setTimeout(() => resolve(true), ms);
     });
 
+    await exec.exec('git', ['config', '--local', 'user.email', '"action@github.com"'], {
+        listeners: {
+            stdout: (data) => {
+                console.log(`git config ok: ${data}`);
+            },
+            stderr: (data) => {
+                console.error('git config error', data);
+            }
+        }
+    });
+    await exec.exec('git', ['config', '--local', 'user.name', '"GitHub Action"'], {
+        listeners: {
+            stdout: (data) => {
+                console.log(`git config ok: ${data}`);
+            },
+            stderr: (data) => {
+                console.error('git config error', data);
+            }
+        }
+    });
+
     await exec.exec('git', ['branch'], {
         listeners: {
             stdout: (data) => {

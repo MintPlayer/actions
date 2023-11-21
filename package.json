@@ -1,6 +1,6 @@
 {
   "name": "@mintplayer/actions",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "More generic GitHub Action to cherry-pick merged commits into release branches",
   "repository": {
