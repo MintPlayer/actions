@@ -105,7 +105,7 @@ function run(ms) {
         //         }
         //     }
         // });
-        yield exec.exec('git', ['branch'], {
+        yield exec.exec('git', ['branch', '-a'], {
             listeners: {
                 stdout: (data) => {
                     console.log(`Found branch: ${data}`);
