@@ -9,7 +9,8 @@ export async function run(ms: number) {
         setTimeout(() => resolve(true), ms);
     });
 
-    await exec.exec('git', ['branch', '-a', '-r', '| grep -v "HEAD"'], {
+    // await exec.exec('git', ['branch', '-a', '-r', '| grep -v "HEAD"'], {
+    await exec.exec('git branch -a -r | grep -v "HEAD"', [], {
         listeners: {
             stdout: (data) => {
                 console.log(`Found branch: ${data}`);
