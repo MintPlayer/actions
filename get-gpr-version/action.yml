@@ -11,6 +11,9 @@ inputs:
   package_type:
     description: Type of the package (SDK)
     required: true
+  token:
+    description: Github token
+    required: true
 runs:
   using: node16
   main: ../dist/get-gpr-version/index.js

@@ -34,12 +34,13 @@ const core = __importStar(__nccwpck_require__(2186));
 const main_1 = __nccwpck_require__(7628);
 const package_name = core.getInput('package_name');
 const package_type = core.getInput('package_type');
+const token = core.getInput('token');
 if (!(0, main_1.isValidPackageType)(package_type)) {
     const message = `package_type should be one of [${main_1.packageTypes.join(', ')}]`;
     core.error(message);
     throw message;
 }
-(0, main_1.run)(package_name, package_type);
+(0, main_1.run)(package_name, package_type, token);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
@@ -89,10 +90,10 @@ function isValidPackageType(packageType) {
     return exports.packageTypes.includes(packageType);
 }
 exports.isValidPackageType = isValidPackageType;
-function run(package_name, package_type) {
+function run(package_name, package_type, token) {
     return __awaiter(this, void 0, void 0, function* () {
         const octokit = new rest_1.Octokit({
-            auth: core.getIDToken()
+            auth: token
         });
         const versions = yield octokit.packages.getAllPackageVersionsForPackageOwnedByAuthenticatedUser({
             package_name,

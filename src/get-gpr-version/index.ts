@@ -3,6 +3,7 @@ import { isValidPackageType, packageTypes, run } from './main';
 
 const package_name: string = core.getInput('package_name');
 const package_type: string = core.getInput('package_type');
+const token: string = core.getInput('token');
 
 if (!isValidPackageType(package_type)) {
     const message = `package_type should be one of [${packageTypes.join(', ')}]`;
@@ -10,4 +11,4 @@ if (!isValidPackageType(package_type)) {
     throw message;
 }
 
-run(package_name, package_type);
+run(package_name, package_type, token);
