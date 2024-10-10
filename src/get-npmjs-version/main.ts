@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export async function run(package_name: string) {
     console.log(`Fetching package version for ${package_name} from NPM`);
-    const response = await axios.get<PackageInfo>(`https://www.npmjs.com/${package_name}`);
+    const response = await axios.get<PackageInfo>(`https://registry.npmjs.com/${package_name}`);
     core.setOutput('packageInfo', response.data);
 }
 

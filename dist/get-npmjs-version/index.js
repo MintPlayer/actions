@@ -85,7 +85,7 @@ const axios_1 = __importDefault(__nccwpck_require__(8757));
 function run(package_name) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log(`Fetching package version for ${package_name} from NPM`);
-        const response = yield axios_1.default.get(`https://www.npmjs.com/${package_name}`);
+        const response = yield axios_1.default.get(`https://registry.npmjs.com/${package_name}`);
         core.setOutput('packageInfo', response.data);
     });
 }
