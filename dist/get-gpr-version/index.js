@@ -93,23 +93,44 @@ exports.isValidPackageType = isValidPackageType;
 function run(package_name, package_type, token) {
     return __awaiter(this, void 0, void 0, function* () {
         const octokit = github.getOctokit(token);
-        // const x = await octokit.users.getAuthenticated();
         if (github.context.repo.owner === github.context.actor) {
             // This is a user repository
-            const versions = yield octokit.rest.packages.getAllPackageVersionsForPackageOwnedByAuthenticatedUser({
-                package_name: package_name.split('/').slice(1).join('/'),
-                package_type
-            });
-            core.setOutput('packageInfo', versions);
+            try {
+                const versions = yield octokit.rest.packages.getAllPackageVersionsForPackageOwnedByAuthenticatedUser({
+                    package_name: package_name.split('/').slice(1).join('/'),
+                    package_type
+                });
+                core.setOutput('packageInfo', versions.data.map(v => ({
+                    id: v.id,
+                    version: v.name,
+                    url: v.html_url || v.package_html_url,
+                    created_at: v.created_at,
+                    updated_at: v.updated_at,
+                })));
+            }
+            catch (ex) {
+                core.setOutput('packageInfo', []);
+            }
         }
         else {
             // This is an organization repository
-            const versions = yield octokit.rest.packages.getAllPackageVersionsForPackageOwnedByOrg({
-                package_name: package_name.split('/').slice(1).join('/'),
-                package_type,
-                org: github.context.repo.owner
-            });
-            core.setOutput('packageInfo', versions);
+            try {
+                const versions = yield octokit.rest.packages.getAllPackageVersionsForPackageOwnedByOrg({
+                    package_name: package_name.split('/').slice(1).join('/'),
+                    package_type,
+                    org: github.context.repo.owner
+                });
+                core.setOutput('packageInfo', versions.data.map(v => ({
+                    id: v.id,
+                    version: v.name,
+                    url: v.html_url || v.package_html_url,
+                    created_at: v.created_at,
+                    updated_at: v.updated_at,
+                })));
+            }
+            catch (ex) {
+                core.setOutput('packageInfo', []);
+            }
         }
     });
 }
