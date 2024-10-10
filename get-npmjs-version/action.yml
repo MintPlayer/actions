@@ -1,0 +1,10 @@
+name: Get-npmjs-version
+description: Get package version from npmjs
+author: MintPlayer
+inputs:
+  package_name:
+    description: Name of the package
+    required: true
+runs:
+  using: node16
+  main: ../dist/get-npmjs-version/index.js

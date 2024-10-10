@@ -1,0 +1,36 @@
+import axios from 'axios';
+
+
+export async function run(package_name: string) {
+    console.log(`Fetching package version for ${package_name} from NPM`);
+    var response = await axios.get<PackageInfo>(`https://www.npmjs.com/${package_name}`);
+    console.log(response);
+}
+
+export interface PackageInfo {
+    name: string;
+    versions: Record<string, VersionInfo>;
+    time: Record<string, Date>;
+    homepage: string;
+    repository: RepositoryInfo;
+    description: string;
+    maintainers: RepositoryMaintainer[];
+    readme: string;
+    readmeFilename: string;
+}
+
+export interface VersionInfo {
+    typings: string;
+    // peerDependencies ?
+}
+
+export interface RepositoryInfo {
+    type: string;
+    url: string;
+    directory: string;
+}
+
+export interface RepositoryMaintainer {
+    name: string;
+    email: string;
+}

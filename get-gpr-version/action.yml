@@ -1,0 +1,13 @@
+name: Get-gpr-version
+description: Get package version from Github Package Registry
+author: MintPlayer
+inputs:
+  package_name:
+    description: Name of the package
+    required: true
+  package_owner:
+    description: Organization that owns the package
+    required: true
+runs:
+  using: node16
+  main: ../dist/get-gpr-version/index.js

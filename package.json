@@ -16,7 +16,9 @@
     "build": "tsc",
     "pack:delay": "ncc build lib/delay -o dist/delay",
     "pack:cherry-pick": "ncc build lib/cherry-pick -o dist/cherry-pick",
-    "all": "npm run build && npm run pack:delay && npm run pack:cherry-pick",
+    "pack:get-gpr-version": "ncc build lib/get-gpr-version -o dist/get-gpr-version",
+    "pack:get-npmjs-version": "ncc build lib/get-npmjs-version -o dist/get-npmjs-version",
+    "all": "npm run build && npm run pack:delay && npm run pack:cherry-pick && npm run pack:get-gpr-version && npm run pack:get-npmjs-version",
     "test": "jest"
   },
   "keywords": [
@@ -33,7 +35,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@actions/core": "^1.10.1",
-    "@actions/exec": "^1.1.1"
+    "@actions/exec": "^1.1.1",
+    "axios": "^1.7.7"
   },
   "devDependencies": {
     "@types/jest": "^29.5.8",
