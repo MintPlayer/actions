@@ -1,10 +1,11 @@
+import * as core from '@actions/core';
 import axios from 'axios';
 
 
 export async function run(package_name: string) {
     console.log(`Fetching package version for ${package_name} from NPM`);
     var response = await axios.get<PackageInfo>(`https://www.npmjs.com/${package_name}`);
-    console.log(response);
+    core.setOutput('packageInfo', response);
 }
 
 export interface PackageInfo {
