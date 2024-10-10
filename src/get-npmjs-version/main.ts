@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export async function run(package_name: string) {
     console.log(`Fetching package version for ${package_name} from NPM`);
+    // Documentation: https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#version
     const response = await axios.get<PackageInfo>(`https://registry.npmjs.com/${package_name}`);
     const d = response.data;
     const result = {
