@@ -95,11 +95,15 @@ function run(package_name, package_type, token) {
         const octokit = new rest_1.Octokit({
             auth: token
         });
-        const versions = yield octokit.packages.getAllPackageVersionsForPackageOwnedByAuthenticatedUser({
-            package_name,
-            package_type
-        });
-        core.setOutput('packageInfo', versions);
+        const x = yield octokit.users.getAuthenticated();
+        // const versions = await octokit.packages.getAllPackageVersionsForPackageOwnedByAuthenticatedUser({
+        //     package_name,
+        //     package_type
+        // });
+        // octokit.packages.getAllPackageVersionsForPackageOwnedByOrg({ })
+        // core.
+        // octokit.packages.getAllPackageVersionsForPackageOwnedByOrg({ })
+        core.setOutput('packageInfo', x.data.type);
     });
 }
 exports.run = run;

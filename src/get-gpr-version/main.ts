@@ -10,12 +10,18 @@ export async function run(package_name: string, package_type: PackageType, token
         auth: token
     });
 
-    const versions = await octokit.packages.getAllPackageVersionsForPackageOwnedByAuthenticatedUser({
-        package_name,
-        package_type
-    });
+    const x = await octokit.users.getAuthenticated();
 
-    core.setOutput('packageInfo', versions);
+    // const versions = await octokit.packages.getAllPackageVersionsForPackageOwnedByAuthenticatedUser({
+    //     package_name,
+    //     package_type
+    // });
+    // octokit.packages.getAllPackageVersionsForPackageOwnedByOrg({ })
+    // core.
+
+    // octokit.packages.getAllPackageVersionsForPackageOwnedByOrg({ })
+
+    core.setOutput('packageInfo', x.data.type);
 }
 
 export const packageTypes: string[] = [
