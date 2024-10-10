@@ -6,7 +6,9 @@ export function isValidPackageType(packageType: string): packageType is PackageT
 }
 
 export async function run(package_name: string, package_type: PackageType) {
-    const octokit = new Octokit({ auth: { }});
+    const octokit = new Octokit({
+        auth: core.getIDToken()
+    });
 
     const versions = await octokit.packages.getAllPackageVersionsForPackageOwnedByAuthenticatedUser({
         package_name,
