@@ -91,7 +91,9 @@ function isValidPackageType(packageType) {
 exports.isValidPackageType = isValidPackageType;
 function run(package_name, package_type) {
     return __awaiter(this, void 0, void 0, function* () {
-        const octokit = new rest_1.Octokit({ auth: {} });
+        const octokit = new rest_1.Octokit({
+            auth: core.getIDToken()
+        });
         const versions = yield octokit.packages.getAllPackageVersionsForPackageOwnedByAuthenticatedUser({
             package_name,
             package_type
