@@ -5,7 +5,30 @@ import axios from 'axios';
 export async function run(package_name: string) {
     console.log(`Fetching package version for ${package_name} from NPM`);
     const response = await axios.get<PackageInfo>(`https://registry.npmjs.com/${package_name}`);
-    core.setOutput('packageInfo', response.data);
+    const d = response.data;
+    const result = {
+        description: d.description,
+        homepage: d.homepage,
+        name: d.name,
+        maintainers: d.maintainers.map(m => ({
+            name: m.name,
+            email: m.email,
+        })),
+        // readme: d.readme,
+        readmeFilename: d.readmeFilename,
+        repository: {
+            type: d.repository.type,
+            url: d.repository.url,
+            directory: d.repository.directory,
+        },
+        time: d.time,
+        versions: Object.keys(d.versions).map(key => ({
+            version: key,
+            typings: d.versions[key].typings,
+        })),
+    };
+
+    core.setOutput('packageInfo', result);
 }
 
 export interface PackageInfo {
