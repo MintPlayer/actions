@@ -5,8 +5,11 @@ inputs:
   package_name:
     description: Name of the package
     required: true
-  package_owner:
-    description: Organization that owns the package
+  # package_owner:
+  #   description: Organization that owns the package
+  #   required: true
+  package_type:
+    description: Type of the package (SDK)
     required: true
 runs:
   using: node16
