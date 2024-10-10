@@ -14,10 +14,10 @@
   },
   "scripts": {
     "build": "tsc",
-    "pack:delay": "ncc build lib/delay -o dist/delay",
-    "pack:cherry-pick": "ncc build lib/cherry-pick -o dist/cherry-pick",
-    "pack:get-gpr-version": "ncc build lib/get-gpr-version -o dist/get-gpr-version",
-    "pack:get-npmjs-version": "ncc build lib/get-npmjs-version -o dist/get-npmjs-version",
+    "pack:delay": "ncc build lib/delay -o dist/delay --minify",
+    "pack:cherry-pick": "ncc build lib/cherry-pick -o dist/cherry-pick --minify",
+    "pack:get-gpr-version": "ncc build lib/get-gpr-version -o dist/get-gpr-version --minify",
+    "pack:get-npmjs-version": "ncc build lib/get-npmjs-version -o dist/get-npmjs-version --minify",
     "all": "npm run build && npm run pack:delay && npm run pack:cherry-pick && npm run pack:get-gpr-version && npm run pack:get-npmjs-version",
     "test": "jest"
   },
