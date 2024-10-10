@@ -85,6 +85,7 @@ const axios_1 = __importDefault(__nccwpck_require__(8757));
 function run(package_name) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log(`Fetching package version for ${package_name} from NPM`);
+        // Documentation: https://github.com/npm/registry/blob/main/docs/REGISTRY-API.md#version
         const response = yield axios_1.default.get(`https://registry.npmjs.com/${package_name}`);
         const d = response.data;
         const result = {
